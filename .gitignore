@@ -130,13 +130,13 @@ dist
 .pnp.*
 
 # lock file
-.pnpm-lock.yaml
-.package-lock.json
-.yarn.lock
-bun.lockb
+/.pnpm-lock.yaml
+/.package-lock.json
+/.yarn.lock
+/bun.lockb
 
-# output
-lib
-lib-vendor
-es
-d3-*
+# output folder
+/lib
+/lib-vendor
+/es
+/d3-*

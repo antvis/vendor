@@ -1,9 +1,9 @@
 {
   "name": "@antv/vendor",
   "module": "index.ts",
-  "type": "module",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "vitest": "^3.0.2"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
