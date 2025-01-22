@@ -1,0 +1,15 @@
+{
+    "name": "module-resolver",
+    "version": "0.1.0",
+    "description": "",
+    "author": "",
+    "license": "ISC",
+    "keywords": [
+        "swc-plugin"
+    ],
+    "main": "module_resolver.wasm",
+    "scripts": {
+        "prepack": "cargo build --release -p module_resolver --target wasm32-wasi && cp target/wasm32-wasi/release/module_resolver.wasm ."
+    },
+    "files": []
+}

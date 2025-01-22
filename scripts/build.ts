@@ -1,7 +1,7 @@
 import fs from "fs/promises";
 import path from "path";
-import { build as esbuild } from "esbuild";
-import config from "../config/esbuild.config";
+import { glob } from "glob";
+import swc, { Options } from "@swc/core";
 import {
   getCjsIndex,
   getCjsRootIndex,
@@ -70,7 +70,46 @@ const main = async () => {
 
   // Transpile vendor sources using esbuild
   console.log("🧙 Transpiling vendor sources.");
-  await esbuild(config);
+  const files = await glob("node_modules/*/src/**/*.js");
+  const config: Options = JSON.parse(
+    await fs.readFile(path.resolve(__dirname, "../config/.swcrc"), "utf-8")
+  );
+
+  await Promise.all(
+    files.map(async (file: string) => {
+      try {
+        const filePath = path.resolve(file);
+        const d3pattern =
+          /^.*node_modules\/(?<pkg>(d3-[^/]+|internmap))(?<path>.*)/;
+        const match = d3pattern.exec(filePath);
+
+        // Skip files that don't match d3 pattern
+        if (!match) {
+          return;
+        }
+
+        const outputPath = filePath.replace(/node_modules/, "lib-vendor");
+        const content = await fs.readFile(filePath, "utf-8");
+
+        // Transpile the file using swc
+        const output = await swc.transform(content, {
+          ...config,
+          filename: file,
+        });
+
+        // write code to output path
+        const outputDir = path.dirname(outputPath);
+        if (!(await fs.exists(outputDir))) {
+          await fs.mkdir(outputDir, { recursive: true });
+        }
+        await fs.writeFile(outputPath, output.code, "utf-8");
+      } catch (error) {
+        console.error(`Error processing file ${file}:`, error);
+        throw error;
+      }
+    })
+  );
+  console.log("✨ Vendor sources transpilation completed.");
 
   // Generate package indexes and copy licenses
   console.log("📜 Copying licenses and generating indexes.");
@@ -89,7 +128,7 @@ const main = async () => {
     // Generate module files and copy licenses in parallel
     await Promise.all([
       // Generate ESM index
-      fs.writeFile(path.join(EsmBasePath, `${pkgName}.js`), getEsmIndex(pkg)),
+      fs.writeFile(path.join(EsmBasePath, `${pkgName}.mjs`), getEsmIndex(pkg)),
       // Generate CommonJS index
       fs.writeFile(path.join(CjsBasePath, `${pkgName}.js`), getCjsIndex(pkg)),
       // Copy LICENSE file

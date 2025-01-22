@@ -1,0 +1,20 @@
+[package]
+name = "module_resolver"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+lto = false
+
+[dependencies]
+pathdiff = "0.2.3"
+regex = "1.11.1"
+serde = "1"
+swc_core = { version = "10.5.*", features = ["ecma_plugin_transform"] }
+
+# .cargo/config.toml defines few alias to build plugin.
+# cargo build-wasi generates wasm-wasi32 binary
+# cargo build-wasm32 generates wasm32-unknown-unknown binary.

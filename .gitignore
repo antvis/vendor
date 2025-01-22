@@ -140,3 +140,11 @@ dist
 /lib-vendor
 /es
 /d3-*
+
+#rust target
+/target
+^target/
+target
+/module-resolver/target
+
+.swc
