@@ -1,5 +1,8 @@
 {
   "name": "@antv/vendor",
+  "version": "1.0.0",
+  "description": "AntV vendor for d3",
+  "license": "MIT",
   "devDependencies": {
     "@types/bun": "latest",
     "vitest": "^3.0.2"
