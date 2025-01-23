@@ -20,9 +20,17 @@ const VENDOR_PKGS = new Set(Object.keys(JSON.parse(vendorPkg).dependencies));
 
 const main = async () => {
   // Get all d3-* and internmap packages from node_modules
-  const pkgs = (
-    await fs.readdir(path.resolve(__dirname, "../node_modules/"))
-  ).filter((name) => /^(d3-|internmap)/.test(name));
+  const pkgs = new Set(
+    (await fs.readdir(path.resolve(__dirname, "../node_modules/"))).filter(
+      (name) => /^(d3-|internmap)/.test(name)
+    )
+  );
+
+  const typePkgs = new Set(
+    (
+      await fs.readdir(path.resolve(__dirname, "../node_modules/@types/"))
+    ).filter((name) => /^(d3-|internmap)/.test(name))
+  );
 
   // Check for nested node_modules to prevent dependency conflicts
   for (const pkgName of pkgs) {
@@ -144,6 +152,7 @@ const main = async () => {
         ),
       // Generate TypeScript definitions for vendor packages
       VENDOR_PKGS.has(pkgName) &&
+        typePkgs.has(pkgName) &&
         fs.writeFile(
           path.resolve(__dirname, `../${pkgName}.d.ts`),
           getTypeDefinitionFile(pkg)
