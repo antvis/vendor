@@ -3,6 +3,7 @@ import path from "path";
 import { glob } from "glob";
 import swc, { Options } from "@swc/core";
 import {
+  d3RegressionIndexContent,
   getCjsIndex,
   getCjsRootIndex,
   getEsmIndex,
@@ -159,6 +160,9 @@ const main = async () => {
         ),
     ]);
   }
+
+  // d3-regression do not have index.js, need to write it manually
+  await writeD3RegressionPathIndex();
 };
 
 // Execute the build process
@@ -170,3 +174,12 @@ main()
     console.error(err);
     process.exit(-1);
   });
+
+async function writeD3RegressionPathIndex() {
+  const d3RegressionPath = path.resolve(
+    __dirname,
+    "../lib-vendor/d3-regression/src/index.js"
+  );
+
+  await fs.writeFile(d3RegressionPath, d3RegressionIndexContent, "utf-8");
+}
