@@ -1,6 +1,6 @@
 {
   "name": "@antv/vendor",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "AntV vendor for d3",
   "license": "MIT",
   "devDependencies": {
@@ -11,7 +11,7 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "link:plugin":"cd module-resolver && bun link && cd .. && bun link module-resolver"
+    "link:plugin": "cd module-resolver && bun link && cd .. && bun link module-resolver"
   },
   "exports": {
     "./package.json": "./package.json",
