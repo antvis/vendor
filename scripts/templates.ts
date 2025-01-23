@@ -1,6 +1,6 @@
 // Templates.
 export const getEsmIndex = (pkg: any) => `
-// \`victory-vendor/${pkg.name}\` (ESM)
+// \`@antv/vendor/${pkg.name}\` (ESM)
 // See upstream license: ${pkg.repository.url.replace(
   /\.git$/,
   ""
@@ -13,7 +13,7 @@ export * from "${pkg.name}";
 `;
 
 export const getCjsIndex = (pkg: any) => `
-// \`victory-vendor/${pkg.name}\` (CommonJS)
+// \`@antv/vendor/${pkg.name}\` (CommonJS)
 // See upstream license: ${pkg.repository.url.replace(
   /\.git$/,
   ""
@@ -26,7 +26,7 @@ module.exports = require("../lib-vendor/${pkg.name}/src/index.js");
 `;
 
 export const getCjsRootIndex = (pkg: any) => `
-// \`victory-vendor/${pkg.name}\` (CommonJS)
+// \`@antv/vendor/${pkg.name}\` (CommonJS)
 // See upstream license: ${pkg.repository.url.replace(
   /\.git$/,
   ""
@@ -38,7 +38,7 @@ module.exports = require("./lib/${pkg.name}");
 `;
 
 export const getTypeDefinitionFile = (pkg: any) => `
-// \`victory-vendor/${pkg.name}\` (TypeScript)
+// \`@antv/vendor/${pkg.name}\` (TypeScript)
 //
 // Export the type definitions for this package:
 export * from "${pkg.name}";
