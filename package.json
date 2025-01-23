@@ -1,6 +1,6 @@
 {
   "name": "@antv/vendor",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "AntV vendor for d3",
   "license": "MIT",
   "devDependencies": {
