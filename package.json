@@ -15,7 +15,8 @@
     "d3"
   ],
   "scripts": {
-    "link:plugin": "cd module-resolver && bun link && cd .. && bun link module-resolver"
+    "link:plugin": "cd module-resolver && bun link && cd .. && bun link module-resolver",
+    "build": "bun run scripts/build.ts"
   },
   "exports": {
     "./package.json": "./package.json",

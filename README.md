@@ -109,6 +109,23 @@ cd module-resolver && bun link && cd .. && bun link module-resolver
 bun run scripts/build.ts
 ```
 
+## 📦 Contributing New Packages
+
+If you need to add a new package to @antv/vendor, please follow these steps:
+
+1. Fork this repository
+2. Create a new branch for your package addition
+3. Add the new package to `package.json` dependencies
+4. Update the build configuration in `scripts/build.ts` if necessary
+5. Build and test the package locally using `bun run build`
+6. Update the README.md to include the new package in the "Included Packages" list and "Version Information" section
+7. Create a Pull Request with:
+   - A clear description of why this package is needed
+   - Any potential impact on existing functionality
+   - Confirmation that the package has been tested
+
+Note: Please ensure the package you're adding is compatible with both ESM and CommonJS module systems.
+
 ## 📄 License
 
 This project is released under the MIT license, but the vendor'ed in libraries include other licenses (e.g. ISC) that we enumerate in our package.json:license field.
