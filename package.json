@@ -1,6 +1,6 @@
 {
   "name": "@antv/vendor",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Vendored dependencies to fix ERR_REQUIRE_ESM.",
   "license": "MIT AND ISC",
   "repository": {
