@@ -130,9 +130,9 @@ dist
 .pnp.*
 
 # lock file
-/.pnpm-lock.yaml
-/.package-lock.json
-/.yarn.lock
+/pnpm-lock.yaml
+/package-lock.json
+/yarn.lock
 /bun.lockb
 
 # output folder
