@@ -86,11 +86,12 @@ impl VisitMut for TransformVisitor {
     fn visit_mut_named_export(&mut self, node: &mut NamedExport) {
         // Visit child nodes first
         node.visit_mut_children_with(self);
-
-        // Resolve and update the export source path
-        if let Some(new_path) = self.resolve_path(&node.src.as_mut().unwrap().value) {
-            node.src.as_mut().unwrap().value = new_path.into();
-            node.src.as_mut().unwrap().raw = None; // Clear raw source to force path recalculation
+        if let Some(src) = node.src.as_mut() {
+            // Resolve and update the export source path
+            if let Some(new_path) = self.resolve_path(&src.value) {
+                src.value = new_path.into();
+                src.raw = None; // Clear raw source to force path recalculation
+            }
         }
     }
 }
@@ -135,6 +136,7 @@ test_inline!(
     import internmap from "internmap";
     import Quad from "./quad.js";
     export { something } from "internmap";    
+    export { something };
     "#,
     // expected output code
     r#"
@@ -143,5 +145,6 @@ test_inline!(
     import internmap from "../../../internmap/src/index.js";
     import Quad from "./quad.js";
     export { something } from "../../../internmap/src/index.js";    
+    export { something }
     "#
 );
