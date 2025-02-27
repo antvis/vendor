@@ -22,8 +22,10 @@ We provide the following libraries:
 - d3-quadtree
 - d3-random
 - d3-regression
+- d3-scale
 - d3-scale-chromatic
 - d3-shape
+- d3-time
 - d3-timer
 
 > Note: The following packages currently lack TypeScript type definitions:
@@ -84,8 +86,8 @@ Here are the specific versions for each package:
   "d3-scale": "4.0.2",
   "d3-scale-chromatic": "3.1.0",
   "d3-shape": "3.2.0",
-  "d3-timer": "3.0.1",
   "d3-time": "3.1.0",
+  "d3-timer": "3.0.1"
 }
 ```
 
