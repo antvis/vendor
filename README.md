@@ -81,9 +81,11 @@ Here are the specific versions for each package:
   "d3-quadtree": "3.0.1",
   "d3-random": "3.0.1",
   "d3-regression": "1.3.10",
+  "d3-scale": "4.0.2",
   "d3-scale-chromatic": "3.1.0",
   "d3-shape": "3.2.0",
-  "d3-timer": "3.0.1"
+  "d3-timer": "3.0.1",
+  "d3-time": "3.1.0",
 }
 ```
 
