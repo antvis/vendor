@@ -1,6 +1,6 @@
 {
   "name": "@antv/vendor",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Vendored dependencies to fix ERR_REQUIRE_ESM.",
   "license": "MIT AND ISC",
   "repository": {
@@ -20,7 +20,8 @@
   ],
   "scripts": {
     "link:plugin": "cd module-resolver && bun link && cd .. && bun link module-resolver",
-    "build": "bun run scripts/build.ts"
+    "build": "bun run scripts/build.ts",
+    "prepublish": "bun run scripts/build.ts"
   },
   "exports": {
     "./package.json": "./package.json",
@@ -69,6 +70,7 @@
     "d3-scale-chromatic": "^3.1.0",
     "d3-shape": "^3.2.0",
     "d3-time": "^3.1.0",
-    "d3-timer": "^3.0.1"
+    "d3-timer": "^3.0.1",
+    "d3-ease": "^3.0.1"
   }
 }
