@@ -2,6 +2,10 @@
 
 A centralized dependency management solution for d3 libraries, providing vendored third-party commonjs dependencies (inspired by [VictoryVendor](https://github.com/FormidableLabs/victory/tree/main/packages/victory-vendor)).
 
+[![npm version](https://img.shields.io/npm/v/@antv/vendor.svg)](https://www.npmjs.com/package/@antv/vendor)
+[![npm downloads](https://img.shields.io/npm/dm/@antv/vendor.svg)](https://www.npmjs.com/package/@antv/vendor)
+[![License](https://img.shields.io/npm/l/@antv/vendor.svg)](./LICENSE)
+
 ## 📦 Included Packages
 
 We provide the following libraries:
