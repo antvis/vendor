@@ -9,8 +9,8 @@
   },
   "devDependencies": {
     "@swc/core": "^1.10.8",
-    "@types/bun": "latest",
     "glob": "^11.0.1",
+    "tsx": "^4.0.0",
     "typescript": "^5.0.0",
     "vitest": "^3.0.2"
   },
@@ -19,9 +19,9 @@
     "d3"
   ],
   "scripts": {
-    "link:plugin": "cd module-resolver && bun link && cd .. && bun link module-resolver",
-    "build": "bun run scripts/build.ts",
-    "prepublish": "bun run scripts/build.ts"
+    "link:plugin": "cd module-resolver && npm link && cd .. && npm link module-resolver",
+    "build": "tsx scripts/build.ts",
+    "prepublish": "tsx scripts/build.ts"
   },
   "exports": {
     "./package.json": "./package.json",

@@ -10,16 +10,16 @@ import {
   getTypeDefinitionFile,
 } from "./templates";
 
-// Read the package.json file to get the list of dependencies
-const vendorPkg = await fs.readFile(
-  path.resolve(__dirname, "../package.json"),
-  "utf-8"
-);
-
-// Create a Set of vendor package names from dependencies
-const VENDOR_PKGS = new Set(Object.keys(JSON.parse(vendorPkg).dependencies));
-
 const main = async () => {
+  // Read the package.json file to get the list of dependencies
+  const vendorPkg = await fs.readFile(
+    path.resolve(__dirname, "../package.json"),
+    "utf-8"
+  );
+
+  // Create a Set of vendor package names from dependencies
+  const VENDOR_PKGS = new Set(Object.keys(JSON.parse(vendorPkg).dependencies));
+
   // Get all d3-* and internmap packages from node_modules
   const pkgs = new Set(
     (await fs.readdir(path.resolve(__dirname, "../node_modules/"))).filter(
@@ -108,7 +108,7 @@ const main = async () => {
 
         // write code to output path
         const outputDir = path.dirname(outputPath);
-        if (!(await fs.exists(outputDir))) {
+        if (!(await fs.stat(outputDir).then(() => true).catch(() => false))) {
           await fs.mkdir(outputDir, { recursive: true });
         }
         await fs.writeFile(outputPath, output.code, "utf-8");
